@@ -2,9 +2,10 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.12.2
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
+
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -12,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(600, 480)
+        Dialog.resize(1189, 874)
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(238, 238, 236))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -197,6 +198,57 @@ class Ui_Dialog(object):
         self.balance_lineEdit.setReadOnly(True)
         self.balance_lineEdit.setObjectName("balance_lineEdit")
         self.verticalLayout_2.addWidget(self.balance_lineEdit)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.expense_radioButton = QtWidgets.QRadioButton(Dialog)
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Text, brush)
+        self.expense_radioButton.setPalette(palette)
+        self.expense_radioButton.setObjectName("expense_radioButton")
+        self.horizontalLayout_2.addWidget(self.expense_radioButton)
+        self.income_radioButton = QtWidgets.QRadioButton(Dialog)
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Text, brush)
+        self.income_radioButton.setPalette(palette)
+        self.income_radioButton.setObjectName("income_radioButton")
+        self.horizontalLayout_2.addWidget(self.income_radioButton)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_2)
+        self.tableWidget = QtWidgets.QTableWidget(Dialog)
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.HighlightedText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.HighlightedText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.HighlightedText, brush)
+        self.tableWidget.setPalette(palette)
+        self.tableWidget.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.tableWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.tableWidget.setObjectName("tableWidget")
+        self.tableWidget.setColumnCount(0)
+        self.tableWidget.setRowCount(0)
+        self.tableWidget.horizontalHeader().setCascadingSectionResizes(True)
+        self.tableWidget.verticalHeader().setVisible(False)
+        self.verticalLayout_2.addWidget(self.tableWidget)
         spacerItem = QtWidgets.QSpacerItem(20, 15, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         self.verticalLayout_2.addItem(spacerItem)
         self.verticalLayout = QtWidgets.QVBoxLayout()
@@ -239,8 +291,8 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "Expense Tracker"))
         self.projectname_label.setText(_translate("Dialog", "Expense Tracker"))
         self.balance_lineEdit.setText(_translate("Dialog", "Balance 500EGP"))
+        self.expense_radioButton.setText(_translate("Dialog", "Expense"))
+        self.income_radioButton.setText(_translate("Dialog", "Income"))
         self.add_pushButton.setText(_translate("Dialog", "Add"))
         self.edit_pushButton.setText(_translate("Dialog", "Edit"))
         self.delete_pushButton.setText(_translate("Dialog", "Delete"))
-
-

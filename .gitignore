@@ -1,4 +1,7 @@
 cheatsheet.txt
 /.idea
 /__pycache__
+/venv
 ExpenseTrackerDatabase.db
+expense.txt
+income.txt

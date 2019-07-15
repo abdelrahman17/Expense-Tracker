@@ -3,6 +3,7 @@ from os import getcwd, listdir
 from os.path import isfile
 from os import system
 from sys import stderr
+from PyQt5.QtWidgets import QMessageBox
 
 
 class DatabaseManager:
@@ -41,7 +42,8 @@ def create_database():
         with DatabaseManager() as db:
             db.execute(create_table)
             db.connection.commit()
-    else: print('database already exists')
+    else:
+        print('database already exists')
 
 
 def convert_ui(*args):
@@ -54,13 +56,7 @@ def convert_ui(*args):
             if file in uifiles:
                 system(f'pyuic5 {file} -o {file[:-3] + ".py"}')
             else:
-                print(f"Can't fine {file} in the current working directory.")
-
+                print(f"Can't fine {file} in the current working directory.", file=stderr)
 
 if __name__ == '__main__':
-    print(directory_files())
-    print('Database Exists:', database_exists())
-    create_database()
-    convert_ui()
-
-
+    pass
