@@ -467,7 +467,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="category_tab">
         <property name="autoFillBackground">
@@ -1036,7 +1036,7 @@
                </palette>
               </property>
               <property name="maxLength">
-               <number>5</number>
+               <number>9</number>
               </property>
               <property name="frame">
                <bool>false</bool>

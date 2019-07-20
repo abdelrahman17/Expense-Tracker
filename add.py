@@ -9,11 +9,11 @@ from Transactions import Transactions
 
 
 class AddWindow(QDialog):
-    def __init__(self, mainscreen):
+    def __init__(self, mainwindow):
         super().__init__()
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
-        self.mainscreen = mainscreen
+        self.mainwindow =mainwindow
         self.ui.expense_radioButton.setChecked(True)
         self.ui.back_pushButton.clicked.connect(self.close)
         self.ui.savecategory_pushButton.clicked.connect(self.save_category)
@@ -23,7 +23,7 @@ class AddWindow(QDialog):
         self.refresh_categories()
 
         ####################################
-        # transaction tab part
+        # categories tab part
         ####################################
         self.ui.t_expense_radioButton.setChecked(True)
         self.ui.t_expense_radioButton.clicked.connect(self.refresh_transaction_categories)
@@ -53,7 +53,6 @@ class AddWindow(QDialog):
                 self.ui.category_lineEdit.clear()
                 self.refresh_categories()
                 self.refresh_transaction_categories()
-                self.mainscreen.load_table('expense')
 
             else:
                 QMessageBox.question(self,
@@ -97,6 +96,9 @@ class AddWindow(QDialog):
                                     QMessageBox.Ok)
             self.ui.t_amountlineEdit.clear()
             self.ui.t_notelineEdit.clear()
+            self.transaction_manager.refresh()
+            self.mainwindow.load_table('expense')
+
         else:
             QMessageBox.warning(self,
                                 'Missing Data',
@@ -106,7 +108,4 @@ class AddWindow(QDialog):
 
 if __name__ == '__main__':
     convert_ui('addwindow.ui')
-    app = QApplication(argv)
-    addwindow = AddWindow()
-    addwindow.show()
-    exit(app.exec_())
+

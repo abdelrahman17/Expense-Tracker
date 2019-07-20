@@ -1,0 +1,7 @@
+edit window will be consisting of:
+----------------------------------
+1. the type which is not editable
+2. category
+3. amount
+4. date
+5. note

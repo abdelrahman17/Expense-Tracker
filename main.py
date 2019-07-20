@@ -1,6 +1,7 @@
 from UtilitiesMod import *
 from Transactions import Transactions
 from mainwindow import *
+from edit import EditWindow
 from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox, QTableWidgetItem, QHeaderView
 from add import AddWindow
 from sys import argv, exit
@@ -16,20 +17,22 @@ class MainWindow(QDialog):
         self.expenses = self.transactions.expense_transactions
         self.income = self.transactions.income_transactions
         self.ui.expense_radioButton.setChecked(True)
+        self.load_table('expense')
         self.show()
         self.ui.add_pushButton.clicked.connect(self.show_add_form)
         self.ui.tableWidget.cellPressed.connect(self.get_table_selection)
+        self.ui.edit_pushButton.clicked.connect(self.edit_button_clicked)
 
     def show_add_form(self):
-        add_form = AddWindow()
+        add_form = AddWindow(self)
         add_form.exec_()
 
     def load_table(self, type_):
         self.ui.tableWidget.clearContents()
-        if type == 'income':
-            dataframe = self.income
+        if type_ == 'income':
+            dataframe = self.transactions.income_transactions
         else:
-            dataframe = self.expenses
+            dataframe = self.transactions.expense_transactions
         r, c = dataframe.shape
         self.ui.tableWidget.setRowCount(r)
         self.ui.tableWidget.setColumnCount(c + 1)
@@ -54,16 +57,31 @@ class MainWindow(QDialog):
 
     def get_table_selection(self):
         items = [item.text() for item in self.ui.tableWidget.selectedItems()]
-        selected_items = {'row_id': items[0],
-                          'category': items[1],
-                          'amount': items[2],
-                          'date': items[3],
-                          'note': items[4],
-                          'type': items[5],
-                          }
-        print(selected_items)
+        if items:
+            selected_items = {'row_id': items[0],
+                              'category': items[1],
+                              'amount': items[2],
+                              'date': items[3],
+                              'note': items[4],
+                              'type': items[5],
+                              }
+            return selected_items
+        else:
+            return False
 
+    def edit_button_clicked(self):
+        items = self.get_table_selection()
+        pprint(items)
+        if items:
+            edit_dialog = EditWindow(items, self)
+            edit_dialog.exec_()
+            self.load_table('expense')
 
+        else:
+            QMessageBox.question(self,
+                                 'Nothing is selected',
+                                 'Please select something first so you can edit it',
+                                 QMessageBox.Ok)
 
 
 if __name__ == '__main__':
@@ -71,5 +89,4 @@ if __name__ == '__main__':
     create_database()
     app = QApplication(argv)
     window = MainWindow()
-    window.load_table('expense')
     exit(app.exec_())
