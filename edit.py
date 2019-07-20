@@ -63,7 +63,7 @@ class EditWindow(QDialog):
             self.transactions.edit(row_id, category, amount, ui_date, note)
             print('updated')
             self.transactions.refresh()
-            self.mainwindow.load_table('expense')
+            self.mainwindow.load_table()
 
 
             self.entry['category'] = category

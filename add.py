@@ -13,7 +13,7 @@ class AddWindow(QDialog):
         super().__init__()
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
-        self.mainwindow =mainwindow
+        self.mainwindow = mainwindow
         self.ui.expense_radioButton.setChecked(True)
         self.ui.back_pushButton.clicked.connect(self.close)
         self.ui.savecategory_pushButton.clicked.connect(self.save_category)
@@ -97,7 +97,7 @@ class AddWindow(QDialog):
             self.ui.t_amountlineEdit.clear()
             self.ui.t_notelineEdit.clear()
             self.transaction_manager.refresh()
-            self.mainwindow.load_table('expense')
+            self.mainwindow.load_table()
 
         else:
             QMessageBox.warning(self,

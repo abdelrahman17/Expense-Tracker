@@ -17,19 +17,22 @@ class MainWindow(QDialog):
         self.expenses = self.transactions.expense_transactions
         self.income = self.transactions.income_transactions
         self.ui.expense_radioButton.setChecked(True)
-        self.load_table('expense')
+        self.load_table()
         self.show()
         self.ui.add_pushButton.clicked.connect(self.show_add_form)
         self.ui.tableWidget.cellPressed.connect(self.get_table_selection)
         self.ui.edit_pushButton.clicked.connect(self.edit_button_clicked)
+        self.ui.income_radioButton.toggled.connect(self.income_radiobtn_clicked)
+        self.ui.expense_radioButton.toggled.connect(self.expense_radiobtn_clicked)
+        self.ui.delete_pushButton.clicked.connect(self.delete_button_clicked)
 
     def show_add_form(self):
         add_form = AddWindow(self)
         add_form.exec_()
 
-    def load_table(self, type_):
+    def load_table(self):
         self.ui.tableWidget.clearContents()
-        if type_ == 'income':
+        if self.ui.income_radioButton.isChecked():
             dataframe = self.transactions.income_transactions
         else:
             dataframe = self.transactions.expense_transactions
@@ -75,13 +78,38 @@ class MainWindow(QDialog):
         if items:
             edit_dialog = EditWindow(items, self)
             edit_dialog.exec_()
-            self.load_table('expense')
+            self.load_table()
 
         else:
             QMessageBox.question(self,
                                  'Nothing is selected',
                                  'Please select something first so you can edit it',
                                  QMessageBox.Ok)
+
+    def income_radiobtn_clicked(self):
+        if self.ui.income_radioButton.isChecked():
+            self.load_table()
+
+    def expense_radiobtn_clicked(self):
+        if self.ui.expense_radioButton.isChecked():
+            self.load_table()
+
+    def delete_button_clicked(self):
+        items = self.get_table_selection()
+        if items:
+            delete_question = QMessageBox.question(self,
+                                                  'Delete Transaction',
+                                                  'Are you sure you want to delete the selected transaction',
+                                                   QMessageBox.Yes | QMessageBox.No)
+            if delete_question == QMessageBox.Yes:
+                self.transactions.delete(items['row_id'])
+                self.load_table()
+        else:
+            QMessageBox.question(self,
+                                 'Nothing is selected',
+                                 'Please select something first so you can delete it',
+                                 QMessageBox.Ok)
+
 
 
 if __name__ == '__main__':
